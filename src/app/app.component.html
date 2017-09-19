@@ -1,0 +1,106 @@
+
+<form #rpcForm="ngForm">
+
+<md-toolbar color="primary"> 
+
+    <span>RPC Test</span>
+ 
+  </md-toolbar>
+
+  <br>
+
+  <md-card>
+
+  <div class="container"
+      fxLayout 
+      fxLayoutAlign="center"
+      fxLayoutGap="12px" >
+      
+  
+    <div fxFlex > 
+
+      <md-form-field>
+      <input  [(ngModel)]="limit" name="limit"   type="number"
+               mdInput placeholder="Main limit" required>
+      <md-error >
+      Please enter a valid Main limit 
+     </md-error> 
+    </md-form-field>
+
+ 
+
+    </div>
+
+
+
+
+
+
+    <div fxFlex>
+
+      <md-form-field>
+      <input  [(ngModel)]="retention" name="retention"   type="number" mdInput placeholder="Main retention" required>
+       <md-error >
+      Please enter a valid Main retention 
+     </md-error> 
+    </md-form-field>
+
+  </div>
+    <div fxFlex="120px"> 
+      
+          <span>Execution Type:</span>
+  </div>
+    <div fxFlex> 
+         <!--  <md-select mdInput [(ngModel)]="exnum" name="exnum">
+            <md-option value=10>Simple</md-option> 
+            <md-option value=20>Complex</md-option>              
+          </md-select>  -->
+          
+          <md-radio-group  mdInput [(ngModel)]="exnum" name="exnum" required >
+            <md-radio-button value="1">Simple</md-radio-button>
+            <md-radio-button value="2">Complex</md-radio-button>
+          </md-radio-group>
+          
+  </div>
+
+  <div fxFlex>
+     
+  <button md-raised-button color="accent" (click)="calculate()"
+           [disabled]="!rpcForm.form.valid || !exnum">Calculate</button>
+  
+
+  </div>
+  
+  <div  fxFlex>  </div>
+ 
+
+  </div>
+
+</md-card>
+
+<br>
+
+
+<md-card>
+<div class="container"
+     fxLayout 
+     fxLayoutAlign="center"
+     fxLayoutGap="10px" >
+
+  <div fxFlex fxFlexOffset="50px" >
+    <table>
+      <tr> <th> Reference Date </th><th> Benchmark 1 </th><th> Benchmark 2 </th> </tr>
+      <tr *ngFor="let row of list" >
+          <td> {{row.refDate|date}} </td>
+          <td> {{row.bench1|number}} </td>
+          <td> {{row.bench2|number}} </td>
+      </tr>
+    </table>
+  </div>
+
+  <div  fxFlex ></div>
+</div>
+</md-card>
+
+ 
+</form>
